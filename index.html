@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PothKade - ඔබ ළඟ ඇති පොත් විකුණන්න</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-highlight">Poth</span>Kade
+        <span class="badge">Pre-loved & New</span>
+      </div>
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="පොතේ නම, කර්තෘ හෝ ISBN සොයන්න...">
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-sell" onclick="openSellModal()">
+          <i class="fa-solid fa-plus"></i> පොත් විකුණන්න
+        </button>
+        <div class="cart-icon" onclick="toggleCart()">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="pill-tag">🇱🇰 ශ්‍රී ලංකාවේ ප්‍රමුඛතම පොත් වෙළඳපොළ</span>
+      <h1>ඔබ ළඟ ඇති පොත් <br><span class="text-accent">පහසුවෙන්ම විකුණන්න</span> සහ අඩු මිලට ගන්න</h1>
+      <p>භාවිතා කළ විෂය පොත්, නවකතා සහ පැරණි සිංහල සාහිත්‍ය කෘති අනෙකුත් පාඨකයින් වෙත සෘජුවම විකුණන්න.</p>
+      <div class="hero-buttons">
+        <a href="#catalog" class="btn btn-primary">පොත් මිලදී ගන්න</a>
+        <button class="btn btn-outline" onclick="openSellModal()">මගේ පොත් ලැයිස්තුගත කරන්න</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="catalog-section" id="catalog">
+    <div class="catalog-header">
+      <h2>පොත් නාමාවලිය</h2>
+      <div class="filter-chips">
+        <button class="chip active" onclick="filterCategory('all')">සියලු පොත්</button>
+        <button class="chip" onclick="filterCategory('fiction')">නවකතා</button>
+        <button class="chip" onclick="filterCategory('academic')">විෂය නිර්දේශ / Textbooks</button>
+        <button class="chip" onclick="filterCategory('sinhala')">සිංහල සාහිත්‍යය</button>
+      </div>
+    </div>
+
+    <!-- Book Grid Container -->
+    <div class="book-grid" id="bookGrid">
+      <!-- JavaScript මඟින් පොත් කාඩ්පත් මෙහි ස්වයංක්‍රීයව එක්වේ -->
+    </div>
+  </section>
+
+  <!-- Sell Modal (පොත් විකුණන popup එක) -->
+  <div class="modal-overlay" id="sellModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>ඔබේ පොත විකිණීමට පළකරන්න</h3>
+        <button class="close-btn" onclick="closeSellModal()">&times;</button>
+      </div>
+      <form id="sellBookForm" onsubmit="handleBookSubmit(event)">
+        <div class="form-group">
+          <label>පොතේ නම (Book Title)</label>
+          <input type="text" id="newBookTitle" required placeholder="උදා: මඩොල් දූව">
+        </div>
+        <div class="form-group">
+          <label>කර්තෘ (Author)</label>
+          <input type="text" id="newBookAuthor" required placeholder="උදා: මාර්ටින් වික්‍රමසිංහ">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>මිල (රුපියල් / LKR)</label>
+            <input type="number" id="newBookPrice" required placeholder="650">
+          </div>
+          <div class="form-group">
+            <label>තත්ත්වය (Condition)</label>
+            <select id="newBookCondition">
+              <option value="Used: Like New">Used: ඉතා හොඳ තත්ත්වයේ</option>
+              <option value="Used: Good">Used: සාමාන්‍ය තත්ත්වයේ</option>
+              <option value="Brand New">Brand New (අලුත්ම)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ඔබගේ WhatsApp දුරකථන අංකය</label>
+          <input type="tel" id="sellerPhone" required placeholder="07XXXXXXXX">
+        </div>
+        <button type="submit" class="btn btn-primary full-width">දැන්ම පළකරන්න (List Book)</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
